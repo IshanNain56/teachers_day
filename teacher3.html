@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teacher's Day!</title>
+    <style>
+        body {
+    background-color: #ffeb3b;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 50px;
+}
+
+h1 {
+    font-size: 3em;
+    color: #d32f2f;
+    animation: colorChange 1s infinite;
+}
+
+button {
+    padding: 20px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border: 2px solid #d32f2f;
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background-color: #d32f2f;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+@keyframes colorChange {
+    0% { color: #d32f2f; }
+    50% { color: #4caf50; }
+    100% { color: #d32f2f; }
+}
+
+.popup {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid #d32f2f;
+    padding: 20px;
+    font-size: 1.2em;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+    cursor: pointer;
+    animation: popupMove 2s infinite;
+}
+
+@keyframes popupMove {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(10px, 10px); }
+    100% { transform: translate(0, 0); }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Happy Teacher's Day! 😊</h1>
+    <button onclick="showPopup()">Click Me for a Surprise!</button>
+
+    <!-- Sound for background annoyance -->
+    <audio id="annoyingSound" loop>
+        <source src="sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let compliments = [
+    "You are the best teacher ever!",
+    "Your lessons are always so inspiring!",
+    "We love your sense of humor!",
+    "Thank you for all the knowledge you share!",
+    "Your patience is unmatched!",
+    "You make learning fun!"
+];
+
+function showPopup() {
+    // Play annoying sound
+    let sound = document.getElementById("annoyingSound");
+    sound.play();
+
+    // Create a new pop-up
+    let popup = document.createElement("div");
+    popup.className = "popup";
+    popup.textContent = compliments[Math.floor(Math.random() * compliments.length)];
+    document.body.appendChild(popup);
+
+    // Randomize position
+    popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+    popup.style.left = Math.random() * (window.innerWidth - 200) + "px";
+
+    // Move pop-up when hovered over
+    popup.onmouseover = function() {
+        popup.style.top = Math.random() * (window.innerHeight - 100) + "px";
+        popup.style.left = Math.random() * (window.innerWidth - 200) + "px";
+    };
+
+    // Add more pop-ups continuously
+    setTimeout(showPopup, 2000);
+}
+
+    </script>
+</body>
+</html>
